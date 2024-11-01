@@ -86,17 +86,17 @@ static void Epaper_TurnOnDisplay(void)
 
 static void Epaper_TurnOnDisplay_Fast(void)
 {
-    spi_write(cmd,0x22); // Display Update Control
-    spi_write(data,0xc7);    // fast:0x0c, quality:0x0f, 0xcf
-    spi_write(cmd,0x20); // Activate Display Update Sequence
+    spi_write(cmd, 0x22);  // Display Update Control
+    spi_write(data, 0xc7); // fast:0x0c, quality:0x0f, 0xcf
+    spi_write(cmd, 0x20);  // Activate Display Update Sequence
     Epaper_ReadBusy();
 }
 
 static void Epaper_TurnOnDisplay_Partial(void)
 {
-    spi_write(cmd,0x22); // Display Update Control
-    spi_write(data,0xff);    // fast:0x0c, quality:0x0f, 0xcf
-    spi_write(cmd,0x20); // Activate Display Update Sequence
+    spi_write(cmd, 0x22);  // Display Update Control
+    spi_write(data, 0xff); // fast:0x0c, quality:0x0f, 0xcf
+    spi_write(cmd, 0x20);  // Activate Display Update Sequence
     Epaper_ReadBusy();
 }
 
@@ -109,29 +109,29 @@ void Epaper_Init(void)
     Epaper_Reset();
 
     Epaper_ReadBusy();
-    spi_write(cmd,0x12); // SWRESET
+    spi_write(cmd, 0x12); // SWRESET
     Epaper_ReadBusy();
 
-    spi_write(cmd,0x01); // Driver output control
-    spi_write(data,0xF9);
-    spi_write(data,0x00);
-    spi_write(data,0x00);
+    spi_write(cmd, 0x01); // Driver output control
+    spi_write(data, 0xF9);
+    spi_write(data, 0x00);
+    spi_write(data, 0x00);
 
-    spi_write(cmd,0x11); // data entry mode
-    spi_write(data,0x03);
+    spi_write(cmd, 0x11); // data entry mode
+    spi_write(data, 0x03);
 
     Epaper_SetWindows(0, 0, WIDTH - 1, HEIGHT - 1);
     Epaper_SetCursor(0, 0);
 
-    spi_write(cmd,0x3C); // BorderWavefrom
-    spi_write(data,0x05);
+    spi_write(cmd, 0x3C); // BorderWavefrom
+    spi_write(data, 0x05);
 
-    spi_write(cmd,0x21); //  Display update control
-    spi_write(data,0x00);
-    spi_write(data,0x80);
+    spi_write(cmd, 0x21); //  Display update control
+    spi_write(data, 0x00);
+    spi_write(data, 0x80);
 
-    spi_write(cmd,0x18); // Read built-in temperature sensor
-    spi_write(data,0x80);
+    spi_write(cmd, 0x18); // Read built-in temperature sensor
+    spi_write(data, 0x80);
     Epaper_ReadBusy();
 }
 
@@ -139,30 +139,30 @@ void Epaper_Init_Fast(void)
 {
     Epaper_Reset();
 
-    spi_write(cmd,0x12); // SWRESET
+    spi_write(cmd, 0x12); // SWRESET
     Epaper_ReadBusy();
 
-    spi_write(cmd,0x18); // Read built-in temperature sensor
-    spi_write(data,0x80);
+    spi_write(cmd, 0x18); // Read built-in temperature sensor
+    spi_write(data, 0x80);
 
-    spi_write(cmd,0x11); // data entry mode
-    spi_write(data,0x03);
+    spi_write(cmd, 0x11); // data entry mode
+    spi_write(data, 0x03);
 
     Epaper_SetWindows(0, 0, WIDTH - 1, HEIGHT - 1);
     Epaper_SetCursor(0, 0);
 
-    spi_write(cmd,0x22); // Load temperature value
-    spi_write(data,0xB1);
-    spi_write(cmd,0x20);
+    spi_write(cmd, 0x22); // Load temperature value
+    spi_write(data, 0xB1);
+    spi_write(cmd, 0x20);
     Epaper_ReadBusy();
 
-    spi_write(cmd,0x1A); // Write to temperature register
-    spi_write(data,0x64);
-    spi_write(data,0x00);
+    spi_write(cmd, 0x1A); // Write to temperature register
+    spi_write(data, 0x64);
+    spi_write(data, 0x00);
 
-    spi_write(cmd,0x22); // Load temperature value
-    spi_write(data,0x91);
-    spi_write(cmd,0x20);
+    spi_write(cmd, 0x22); // Load temperature value
+    spi_write(data, 0x91);
+    spi_write(cmd, 0x20);
     Epaper_ReadBusy();
 }
 
@@ -176,12 +176,12 @@ void Epaper_Clear(void)
     Width = (WIDTH % 8 == 0) ? (WIDTH / 8) : (WIDTH / 8 + 1);
     Height = HEIGHT;
 
-    spi_write(cmd,0x24);
+    spi_write(cmd, 0x24);
     for (uint16_t j = 0; j < Height; j++)
     {
         for (uint16_t i = 0; i < Width; i++)
         {
-            spi_write(data,0XFF);
+            spi_write(data, 0XFF);
         }
     }
 
@@ -194,12 +194,12 @@ void Epaper_Clear_Black(void)
     Width = (WIDTH % 8 == 0) ? (WIDTH / 8) : (WIDTH / 8 + 1);
     Height = HEIGHT;
 
-    spi_write(cmd,0x24);
+    spi_write(cmd, 0x24);
     for (uint16_t j = 0; j < Height; j++)
     {
         for (uint16_t i = 0; i < Width; i++)
         {
-            spi_write(data,0X00);
+            spi_write(data, 0X00);
         }
     }
 
@@ -217,12 +217,12 @@ void Epaper_Display(uint8_t *Image)
     Width = (WIDTH % 8 == 0) ? (WIDTH / 8) : (WIDTH / 8 + 1);
     Height = HEIGHT;
 
-    spi_write(cmd,0x24);
+    spi_write(cmd, 0x24);
     for (uint16_t j = 0; j < Height; j++)
     {
         for (uint16_t i = 0; i < Width; i++)
         {
-            spi_write(data,Image[i + j * Width]);
+            spi_write(data, Image[i + j * Width]);
         }
     }
 
@@ -235,12 +235,12 @@ void Epaper_Display_Fast(uint8_t *Image)
     Width = (WIDTH % 8 == 0) ? (WIDTH / 8) : (WIDTH / 8 + 1);
     Height = HEIGHT;
 
-    spi_write(cmd,0x24);
+    spi_write(cmd, 0x24);
     for (uint16_t j = 0; j < Height; j++)
     {
         for (uint16_t i = 0; i < Width; i++)
         {
-            spi_write(data,Image[i + j * Width]);
+            spi_write(data, Image[i + j * Width]);
         }
     }
 
@@ -258,20 +258,20 @@ void Epaper_Display_Base(uint8_t *Image)
     Width = (WIDTH % 8 == 0) ? (WIDTH / 8) : (WIDTH / 8 + 1);
     Height = HEIGHT;
 
-    spi_write(cmd,0x24); // Write Black and White image to RAM
+    spi_write(cmd, 0x24); // Write Black and White image to RAM
     for (uint16_t j = 0; j < Height; j++)
     {
         for (uint16_t i = 0; i < Width; i++)
         {
-            spi_write(data,Image[i + j * Width]);
+            spi_write(data, Image[i + j * Width]);
         }
     }
-    spi_write(cmd,0x26); // Write Black and White image to RAM
+    spi_write(cmd, 0x26); // Write Black and White image to RAM
     for (uint16_t j = 0; j < Height; j++)
     {
         for (uint16_t i = 0; i < Width; i++)
         {
-            spi_write(data,Image[i + j * Width]);
+            spi_write(data, Image[i + j * Width]);
         }
     }
     Epaper_TurnOnDisplay();
@@ -293,26 +293,26 @@ void Epaper_Display_Partial(uint8_t *Image)
     delay_ms(2);
     gpio_set_level(RST, 1);
 
-    spi_write(cmd,0x3C); // BorderWavefrom
-    spi_write(data,0x80);
+    spi_write(cmd, 0x3C); // BorderWavefrom
+    spi_write(data, 0x80);
 
-    spi_write(cmd,0x01); // Driver output control
-    spi_write(data,0xF9);
-    spi_write(data,0x00);
-    spi_write(data,0x00);
+    spi_write(cmd, 0x01); // Driver output control
+    spi_write(data, 0xF9);
+    spi_write(data, 0x00);
+    spi_write(data, 0x00);
 
-    spi_write(cmd,0x11); // data entry mode
-    spi_write(data,0x03);
+    spi_write(cmd, 0x11); // data entry mode
+    spi_write(data, 0x03);
 
     Epaper_SetWindows(0, 0, WIDTH - 1, HEIGHT - 1);
     Epaper_SetCursor(0, 0);
 
-    spi_write(cmd,0x24); // Write Black and White image to RAM
+    spi_write(cmd, 0x24); // Write Black and White image to RAM
     for (uint16_t j = 0; j < Height; j++)
     {
         for (uint16_t i = 0; i < Width; i++)
         {
-            spi_write(data,Image[i + j * Width]);
+            spi_write(data, Image[i + j * Width]);
         }
     }
     Epaper_TurnOnDisplay_Partial();
@@ -324,7 +324,7 @@ parameter:
 ******************************************************************************/
 void Epaper_Sleep(void)
 {
-    spi_write(cmd,0x10); // enter deep sleep
-    spi_write(data,0x01);
+    spi_write(cmd, 0x10); // enter deep sleep
+    spi_write(data, 0x01);
     delay_ms(100);
 }

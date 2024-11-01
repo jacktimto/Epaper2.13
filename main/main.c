@@ -10,34 +10,36 @@
 #include "GUI_Paint.h"
 #include "ImageData.h"
 
-void epaper_driver_init(void) //epaper的io初始化
+void epaper_driver_init(void) // epaper的io初始化
 {
     gpio_init();
     spi_init();
 
     /*Epaper init*/
-    
 }
 
 void app_main(void)
 {
     epaper_driver_init();
-
     Epaper_Init();
     Epaper_Clear();
 
     uint8_t *BlackImage;
-    uint16_t Imagesize = ((WIDTH % 8 == 0)? (WIDTH / 8 ): (WIDTH / 8 + 1)) * HEIGHT;
+    uint16_t Imagesize = ((WIDTH % 8 == 0) ? (WIDTH / 8) : (WIDTH / 8 + 1)) * HEIGHT;
     BlackImage = (uint8_t *)malloc(Imagesize);
-    Paint_NewImage(BlackImage, WIDTH, HEIGHT, 0, BLACK);
-    Paint_Clear(WHITE);
-
+    Paint_NewImage(BlackImage, WIDTH, HEIGHT, 0, WHITE);
+#if 1 // display 图片
     Epaper_Init_Fast();
     Paint_SelectImage(BlackImage);
     Paint_Clear(WHITE);
     Paint_DrawBitMap(gImage_2in13_2);
 
     Epaper_Display_Fast(BlackImage);
+
+    Epaper_Sleep();
+    free(BlackImage);
+    BlackImage = NULL;
+#endif
 
     Epaper_Sleep();
     free(BlackImage);

@@ -13,7 +13,9 @@
         "spi_master.h": "c",
         "freertos.h": "c",
         "cstring": "c",
-        "gui_paint.h": "c"
+        "gui_paint.h": "c",
+        "compare": "c",
+        "cstdint": "c"
     },
     "idf.flashType": "UART",
     "idf.portWin": "COM15",

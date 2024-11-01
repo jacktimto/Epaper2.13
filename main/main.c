@@ -43,7 +43,9 @@ void app_main(void)
 
 #endif
 
-#if 1 // display QR_code图片,图片尺寸必须250*122
+#if 1 
+/*display QR_code图片,图片尺寸必须250*122,显示二维码*/
+/*下一步,软件生产二维码*/
     Epaper_Init_Fast();
     Paint_SelectImage(BlackImage);
     Paint_Clear(WHITE);

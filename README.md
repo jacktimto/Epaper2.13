@@ -12,3 +12,5 @@
 4. 在BSP/Fonts 是字库
 5. 在BSP/GUI 是画线的操作
 6. 在BSP/img 是一些图形
+
+2.<img src="C:\Users\jackt\Desktop\esp32\jason\Epaper2.13\pic\image-20241101145315463.png" alt="image-20241101145315463" style="zoom:80%;" />

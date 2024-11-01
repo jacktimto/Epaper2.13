@@ -33,12 +33,10 @@ void app_main(void)
     Paint_SelectImage(BlackImage);
     Paint_Clear(WHITE);
     Paint_DrawBitMap(gImage_2in13_2);
+    Paint_ClearWindows(0,0,64,64,BLACK);
 
     Epaper_Display_Fast(BlackImage);
 
-    Epaper_Sleep();
-    free(BlackImage);
-    BlackImage = NULL;
 #endif
 
     Epaper_Sleep();

@@ -48,6 +48,7 @@ extern const unsigned char gImage_2in13b_r[];
 extern const unsigned char gImage_2in13c_b[];
 extern const unsigned char gImage_2in13c_y[];
 extern const unsigned char gImage_2in13d[];
+extern const unsigned char QR_code[];
 
 extern const unsigned char gImage_2in66[];
 extern const unsigned char gImage_2in66br[];

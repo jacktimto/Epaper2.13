@@ -14,7 +14,7 @@
 #define BUSY 5
 
 // Display resolution
-#define WIDTH       128
+#define WIDTH       122
 #define HEIGHT      250
 
 #define Read_BUSY_Status   gpio_get_level(BUSY)
